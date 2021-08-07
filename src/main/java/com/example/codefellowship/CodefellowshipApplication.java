@@ -1,8 +1,8 @@
 package com.example.codefellowship;
 
+import com.example.codefellowship.Infrastructure.ApplicationUserRepository;
 import com.example.codefellowship.Infrastructure.services.PostService;
 import com.example.codefellowship.domain.ApplicationUser;
-import com.example.codefellowship.Infrastructure.ApplicationUserRepository;
 import com.example.codefellowship.domain.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

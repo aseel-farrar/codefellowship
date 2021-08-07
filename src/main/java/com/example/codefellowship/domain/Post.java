@@ -13,7 +13,6 @@ public class Post {
     @Column(columnDefinition = "text")
     private String postBody;
 
-    @Transient
     private LocalDate createdAt;
 
     @ManyToOne
