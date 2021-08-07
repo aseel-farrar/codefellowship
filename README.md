@@ -1,8 +1,8 @@
 # Labs 16 and 17: CodeFellowship Login, Profiles & Posts
 
 > ## Routes:
-* `@GetMapping("/signupPage")` ->> render Signup Page
-* `@GetMapping("/login")` ->> render login Page
+* `@GetMapping("/signupPage")` --> render Signup Page
+* `@GetMapping("/login")` --> render login Page
 * `@PostMapping("/signup")` --> create new Application user
 * `@GetMapping("/myProfile")` --> render the logged in user profile page
 * `@PostMapping("/myProfile")` --> render the profile page ***after creating new post***.
