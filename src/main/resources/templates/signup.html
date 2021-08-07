@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <div th:replace="fragments :: head"></div>
+    <title>Sign Up Page</title>
+</head>
+<body>
+<header>
+    <div class="header" th:insert="fragments :: headerNav"></div>
+</header>
+<main>
+    <h1>Sign Up</h1>
+    <form method="POST" th:action="@{/signup}">
+        <p class="input">
+            <label for="username">Username: </label>
+            <input id="username" name="username" type="text" required>
+        </p>
+
+        <p class="input">
+            <label for="password">Password: </label>
+            <input id="password" name="password" type="password" required>
+        </p>
+
+        <p class="input">
+            <label for="firstname">First Name: </label>
+            <input id="firstname" name="firstname" type="text" required>
+        </p>
+
+        <p class="input">
+            <label for="lastname">Last Name: </label>
+            <input id="lastname" name="lastname" type="text" required>
+        </p>
+
+        <p class="input">
+            <label for="dateOfBirth">Date Of Birth: </label>
+            <input id="dateOfBirth" name="dateOfBirth" type="date" required>
+        </p>
+        <p class="input">
+            <label for="bio">Bio: </label>
+            <input id="bio" name="bio" type="text">
+        </p>
+        <p class="button">
+            <input type="submit" value="Sign Up"/>
+            <input type="reset" value="reset"/>
+        <p>
+    </form>
+</main>
+<footer>
+
+</footer>
+</body>
+</html>

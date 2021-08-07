@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <div th:replace="fragments :: head"></div>
+    <title>Sign In Page</title>
+</head>
+<body>
+<header>
+    <div class="header" th:insert="fragments :: headerNav"></div>
+</header>
+<main>
+    <h1>Sign In</h1>
+    <form method="POST" th:action="@{/login}">
+        <p class="input">
+            <label for="username">Username: </label>
+            <input id="username" name="username" type="text" required>
+        </p>
+
+        <p class="input">
+            <label for="password">Password: </label>
+            <input id="password" name="password" type="password" required>
+        </p>
+
+        <p class="button">
+            <input type="submit" value="Sign In"/>
+            <input type="reset" value="reset"/>
+        <p>
+    </form>
+</main>
+<footer>
+
+</footer>
+</body>
+</html>

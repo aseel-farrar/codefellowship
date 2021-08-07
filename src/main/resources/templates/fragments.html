@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<body>
+
+<div th:fragment="head">
+    <meta charset="UTF-8">
+    <link th:href="@{/css/reset.css}" rel="stylesheet"/>
+    <link th:href="@{/css/styles.css}" rel="stylesheet"/>
+</div>
+
+<div th:fragment="headerNav">
+    <nav>
+        <a th:href="@{/}">Home Page</a>
+        <span> | </span>
+        <a th:href="@{/signupPage}">Signup</a>
+        <span> | </span>
+        <a th:href="@{/login}">Login</a>
+        <span> | </span>
+        <a sec:authorize="isAuthenticated()" th:href="@{/myProfile}">
+            <span sec:authentication="name" ></span>
+        </a>
+    </nav>
+</div>
+
+</body>
+</html>
