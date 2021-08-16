@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="https://www.thymeleaf.org" lang="en"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+>
 <head>
     <div th:replace="fragments :: head"></div>
     <title>Profile Page</title>
@@ -12,7 +12,12 @@
 </header>
 <main>
 
-    <h1>Welcome to <span th:text="${userDetails.username}"></span>'s profile</h1>
+    <h1>Welcome to <span th:text="${userDetails.username}"></span>'s profile
+        <span >
+            <a th:href="'/user/' + ${current.userId} + '/follow/' + ${userDetails.userId}">  >> Follow <<</a>
+        </span>
+    </h1>
+
     <div class="profile">
         <img th:src="@{/images/blankProfilePicture.png}">
         <p th:text="'First Name: ' + ${userDetails.firstName}"></p>
@@ -21,29 +26,14 @@
         <p th:text="'bio: ' + ${userDetails.bio}"></p>
     </div>
 
-    <h1 class="home">Create Post</h1>
-    <form sec:authorize="isAuthenticated()" th:action="@{/myProfile}" method="post">
-        <p class="input">
-            <textarea name="postBody" placeholder="Write Post" required></textarea>
-        </p>
-        <p class="button">
-            <input type="submit" value="Create">
-        </p>
-    </form>
-
-    <h1 class="home">All Posts</h1>
-    <div class="profile" sec:authorize="isAuthenticated()" th:each="post : ${posts}">
-        <h2 th:text="${userDetails.username}"></h2>
-        <h2 th:text="${post.createdAt}"></h2>
-        <h2 th:text="${post.postBody}"></h2>
-    </div>
+    <!--    <h1 class="home">All Posts</h1>-->
+    <!--    <div class="profile" sec:authorize="isAuthenticated()" th:each="post : ${posts}">-->
+    <!--        <h2 th:text="${userDetails.username}"></h2>-->
+    <!--        <h2 th:text="${post.createdAt}"></h2>-->
+    <!--        <h2 th:text="${post.postBody}"></h2>-->
+    <!--    </div>-->
 
 
 </main>
-
-
-<!--<form th:action="@{/logout}" method="post">-->
-<!--    <input type="submit" value="Sign Out"/>-->
-<!--</form>-->
 </body>
 </html>

@@ -25,6 +25,17 @@ public class ApplicationUser implements UserDetails {
     @OneToMany(mappedBy = "applicationUser")
     Set<Post> posts = new HashSet<>();
 
+    @ManyToMany
+    @JoinTable (
+            name="followers",
+            joinColumns = { @JoinColumn(name = "follower_id")},
+            inverseJoinColumns = { @JoinColumn(name = "followee_id")}
+    )
+    List<ApplicationUser> accountsIFollow;
+
+    @ManyToMany(mappedBy = "accountsIFollow")
+    List<ApplicationUser> accountsFollowMe;
+
     public ApplicationUser(String username, String password, String firstName, String lastName, Date dateOfBirth, String bio) {
         this.username = username;
         this.password = password;
@@ -125,6 +136,23 @@ public class ApplicationUser implements UserDetails {
 //    public void createPost(String post) {
 //        posts.add(new Post(post));
 //    }
+
+
+    public List<ApplicationUser> getAccountsIFollow() {
+        return accountsIFollow;
+    }
+
+    public void setAccountsIFollow(List<ApplicationUser> accountsIFollow) {
+        this.accountsIFollow = accountsIFollow;
+    }
+
+    public List<ApplicationUser> getAccountsFollowMe() {
+        return accountsFollowMe;
+    }
+
+    public void setAccountsFollowMe(List<ApplicationUser> accountsFollowMe) {
+        this.accountsFollowMe = accountsFollowMe;
+    }
 
     @Override
     public String toString() {

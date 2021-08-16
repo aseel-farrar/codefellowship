@@ -41,8 +41,6 @@ public class CodefellowshipApplication implements CommandLineRunner {
         newPost.setApplicationUser(adminUser);
         postService.savePost(newPost);
 
-
-
         ApplicationUser applicationUser = new ApplicationUser("nawras",
                 encoder.encode("0000"),
                 "nawras", "farrar", Date.valueOf("2020-6-12"),
@@ -53,7 +51,5 @@ public class CodefellowshipApplication implements CommandLineRunner {
 
         newPost2.setApplicationUser(applicationUser);
         postService.savePost(newPost2);
-
-
     }
 }
