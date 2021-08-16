@@ -18,8 +18,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.websocket.server.PathParam;
+import java.security.Principal;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
@@ -84,12 +87,35 @@ public class ApplicationUserController {
     }
 
     @GetMapping("/users/{id}")
-    public String getUserProfile(@PathVariable Long id, Model model) {
-        ApplicationUser userDetails = applicationUserService.getUserById(id);
+    public String getUserProfile(@PathVariable Long id,
+                                 Principal accountDetail,
+                                 Model model) {
+        ApplicationUser userDetails = applicationUserService.getUserById(id); // visited user
         model.addAttribute("userDetails", userDetails);
+
+        model.addAttribute("current", applicationUserService.findUserByName(accountDetail.getName()));
+
         return ("profile");
     }
 
+    @GetMapping("/user/{currentId}/follow/{followId}")
+    public RedirectView follow( @PathVariable long currentId,
+                                @PathVariable long followId) {
+
+        if (currentId != followId){
+            ApplicationUser current = applicationUserService.getUserById(currentId);
+            ApplicationUser follow = applicationUserService.getUserById(followId);
+            current.getAccountsIFollow().add(follow);
+            applicationUserService.createApplicationUser(current);
+        }
+        return new RedirectView("/users/{followId}");
+    }
+
+    @GetMapping("/feeds")
+    public String getFeed(Principal accountDetail, Model model) {
+        model.addAttribute("usersIFollow", applicationUserService.findUserByName(accountDetail.getName()).getAccountsIFollow());
+        return "feeds";
+    }
 
     @GetMapping("/myProfile")
     public String getProfile(Model model) {
@@ -100,7 +126,7 @@ public class ApplicationUserController {
         ApplicationUser applicationUser = applicationUserService.findUserByName(userDetails.getUsername());
         model.addAttribute("userDetails",applicationUser);
         model.addAttribute("posts",applicationUser.getPosts());
-        return ("profile");
+        return ("myProfile");
 
     }
 

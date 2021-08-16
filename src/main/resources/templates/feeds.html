@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org" lang="en"
+>
+<head>
+    <div th:replace="fragments :: head"></div>
+    <title>Feeds</title>
+</head>
+<body>
+<header>
+    <div class="header" th:insert="fragments :: headerNav"></div>
+</header>
+
+
+<main>
+
+    <section th:each="account : ${usersIFollow}">
+        <div class="profile" th:each="post : ${account.posts}">
+            <div class="PostProfile">
+                <a th:href="'/users/' + ${account.userId}">
+                    <p th:text="${account.firstName}+' '+${account.lastName}"></p>
+                </a>
+            </div>
+            <h4 th:text="${post.createdAt}"></h4>
+            <p th:text="${post.postBody}"></p>
+        </div>
+        </div>
+    </section>
+
+</main>
+</body>
+</html>

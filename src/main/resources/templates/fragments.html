@@ -10,15 +10,30 @@
 
 <div th:fragment="headerNav">
     <nav>
-        <a th:href="@{/}">Home Page</a>
-        <span> | </span>
-        <a th:href="@{/signupPage}">Signup</a>
-        <span> | </span>
+        <a th:href="@{/}">Home Page<span> | </span></a>
+
+
+        <a th:href="@{/signupPage}">Signup<span> | </span></a>
+
         <a th:href="@{/login}">Login</a>
-        <span> | </span>
-        <a sec:authorize="isAuthenticated()" th:href="@{/myProfile}">
+
+        <span sec:authorize="isAuthenticated()">  |
+            <a  th:href="@{/myProfile}">
             <span sec:authentication="name" ></span>
+            <span> | </span>
+        </a></span>
+
+        <a sec:authorize="isAuthenticated()" th:href="@{/feeds}">
+            Feeds
+            <span> | </span>
         </a>
+
+        <a sec:authorize="isAuthenticated()" th:href="@{/logout}">
+            Log Out
+        </a>
+
+
+
     </nav>
 </div>
 
